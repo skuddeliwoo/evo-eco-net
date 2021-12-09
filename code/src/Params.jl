@@ -14,6 +14,7 @@ k0 = 10 # base carrying capacity for all species
 kInc = 0.1 # increment / decrement of carying capacities
 m = 0.5 # growth rate of all species # lit: 0.5 for all
 g = 0.01 # constant of proportionality in selection-limited evolution
+μ = 1e-5 # beneficial mutation rate # lit: 10^-5
 
 nEpisodes = 1000 # lit: ?
 nEcoSteps = 5000 # lit: 5000

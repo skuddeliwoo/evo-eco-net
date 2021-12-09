@@ -5,16 +5,14 @@ include("./Params.jl")
 
 export changeEnv
 
-changeEnv = changeEnvDual
-
 env1 = ones(N) * (k0 - kInc)
 env2 = ones(N) * (k0 - kInc)
 
-for (i in 1:N)
-    if rand(Float16 > 0.5)
+for i in 1:N
+    if (rand(Float16) > 0.5)
         env1[i] = (k0 + kInc)
     end
-    if rand(Float16 > 0.5)
+    if (rand(Float16) > 0.5)
         env2[i] = (k0 + kInc)
     end
 end
@@ -43,4 +41,7 @@ function changeEnvModular(nModules=nModules)
     return env
 
 end
+
+changeEnv = changeEnvDual
+
 end  # module Environment
