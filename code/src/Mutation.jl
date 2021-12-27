@@ -4,27 +4,22 @@ using ..Types
 include("./Params.jl")
 
 # update interaction matrix according to Eq. 3, then normalise.
-function mutate(ecosystem::Ecosystem, env)
+function mutate(eco::Ecosystem, env)::Ecosystem
     # (Eq. 3)
-    V = ((m ./ env) * g * μ .* x) * x'
+    V = ((m ./ env) * g * μ .* eco.x) * eco.x'
 
-    M = ecosystem.Ω + V
+    M = eco.Ω + V
 
     # normalise Ω
-    normalise(M)
-
-    ecosystem.Ω = copy(M)
-
-    return ecosystem
+    eco.Ω = copy(normalise(M))
+    return eco
 end
 
 # apply row- and col_normalisation until squared difference of matrix converges
 # below 10^-5
 function normalise(M)
     while true
-        println("normalising...")
         M2 = copy(M)
-        println(M2[1,1])
         row_norm(M2)
         col_norm(M2)
         if (sum((M2 - M)^2) < 1e-5)

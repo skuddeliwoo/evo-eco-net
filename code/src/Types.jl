@@ -2,9 +2,9 @@ module Types
 
 export Ecosystem
 
-struct Ecosystem
-    x::Vector{Float32}
-    Ω::Array{Float32,2}
+mutable struct Ecosystem
+    x::Vector{Float64}
+    Ω::Array{Float64,2}
 end
 
 
