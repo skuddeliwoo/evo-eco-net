@@ -7,7 +7,7 @@ export changeEnv
 
 env1 = ones(N) * (k0 - kInc)
 env2 = ones(N) * (k0 - kInc)
-#
+
 # for i in 1:N
 #     if (rand(Float16) > 0.5)
 #         env1[i] = (k0 + kInc)

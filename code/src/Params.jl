@@ -4,8 +4,8 @@ using ..Types
 
 export nModules, nModuleSize, N, k0, kInc, m, g, μ, ω, nEpisodes, nEcoSteps, eco, ecoDump
 
-nModules = 2
-nModuleSize = 3
+nModules = 1
+nModuleSize = 16
 N = nModules * nModuleSize # Number of species # lit: 400
 
 k0 = 10 # base carrying capacity for all species
@@ -15,7 +15,7 @@ g = 0.01 # constant of proportionality in selection-limited evolution # lit: 0.0
 μ = 1e-5 # beneficial mutation rate # lit: 10^-5
 ω = -0.2 # initial interaction strength
 
-nEpisodes = 20 # lit: 800
+nEpisodes = 800 # lit: 800
 nEcoSteps = 5000 # lit: 5000
 
 # interaction coeffs are init to -0.2; and -1 for diagonal (self interactions)
