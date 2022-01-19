@@ -1,5 +1,6 @@
 module Mutation
 
+using LinearAlgebra: I
 using ..Types
 include("./Params.jl")
 
@@ -8,6 +9,10 @@ function mutate(eco::Ecosystem, env)::Ecosystem
     # (Eq. 3)
     V = ((m ./ env) * g * μ .* eco.x) * eco.x'
 
+    # diagonal elements should not be updated
+    V[I(N)] .= 0.0
+
+    # update interaction matrix, but keep diagonal elements
     M = eco.Ω + V
 
     # normalise Ω
@@ -18,13 +23,21 @@ end
 # apply row- and col_normalisation until squared difference of matrix converges
 # below 10^-5
 function normalise(M)
+    M2 = copy(M)
     while true
-        M2 = copy(M)
         row_norm(M2)
         col_norm(M2)
-        if (sum((M2 - M)^2) < 1e-5)
+
+        ssq = sum((M2 - M)^2)
+
+        if (isnan(ssq))
+            return ErrorException("fn normalise: sum of squared diff is NaN")
+        end
+
+        if (ssq < 1e-5)
             return M2
         end
+
         M = copy(M2)
     end
 end
@@ -33,8 +46,8 @@ end
 # entries in the diagonal (self interactions) remain unchanged. the rest of the
 # rows (or cols) are beeing normalised (getting devided by their sum)
 function row_norm(M)
-    for i in 1:size(M, 1)
-        div = sum(M[i,:]) - M[i,i]
+    for i in 1:N
+        div = (sum(M[i,:]) - M[i,i]) / (ω * (N - 1))
 
         M[i,1:(i-1)] = M[i,1:(i-1)] ./ div
         M[i,(i+1):end] = M[i,(i+1):end] ./ div
@@ -42,8 +55,8 @@ function row_norm(M)
 end
 
 function col_norm(M)
-    for i in 1:size(M, 2)
-        div = sum(M[:,i]) - M[i,i]
+    for i in 1:N
+        div = (sum(M[:,i]) - M[i,i]) / (ω * (N - 1))
 
         M[1:(i-1),i] = M[1:(i-1),i] ./ div
         M[(i+1):end,i] = M[(i+1):end,i] ./ div
