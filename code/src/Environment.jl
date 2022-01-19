@@ -7,15 +7,18 @@ export changeEnv
 
 env1 = ones(N) * (k0 - kInc)
 env2 = ones(N) * (k0 - kInc)
+#
+# for i in 1:N
+#     if (rand(Float16) > 0.5)
+#         env1[i] = (k0 + kInc)
+#     end
+#     if (rand(Float16) > 0.5)
+#         env2[i] = (k0 + kInc)
+#     end
+# end
 
-for i in 1:N
-    if (rand(Float16) > 0.5)
-        env1[i] = (k0 + kInc)
-    end
-    if (rand(Float16) > 0.5)
-        env2[i] = (k0 + kInc)
-    end
-end
+env1[1:Int(N/2) + 1] .= (k0 + kInc)
+env2[Int(N/2) + 1:end] .= (k0 + kInc)
 
 function changeEnvDual(episode)
     if (episode % 2 == 0)
