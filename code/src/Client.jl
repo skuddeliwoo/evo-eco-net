@@ -4,8 +4,10 @@ using .Types
 import .Environment
 import .Mutation
 
+include("./init.jl")
+
 for episode in 1:nEpisodes
-    if (episode % 100 == 0)
+    if (episode % 10 == 0)
         println("#################################")
         println("status: episode $episode of $nEpisodes")
     end

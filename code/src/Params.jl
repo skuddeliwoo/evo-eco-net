@@ -11,19 +11,5 @@ g = 0.01 # constant of proportionality in selection-limited evolution # lit: 0.0
 μ = 1e-5 # beneficial mutation rate # lit: 10^-5
 ω = -0.2 # initial interaction strength
 
-# interaction coeffs are init to -0.2; and -1 for diagonal (self interactions)
-# if perf is decent, this can be inc to Float64 (which is default)
-species = ones(Float64, N) * 0.1
-# species = species / sum(species)
-interactions = ones(Float64, N,N) * ω
-for i in 1:N
-    interactions[i,i] = -1
-end
-
-eco = Ecosystem(species, interactions)
-
-ecoDump = []
-push!(ecoDump, [copy(eco.x), copy(eco.Ω)])
-
-nEpisodes = 800 # lit: 800
+nEpisodes = 80 # lit: 800
 nEcoSteps = 5000 # lit: 5000
