@@ -2,7 +2,7 @@ module Mutation
 
 using LinearAlgebra: I
 using ..Types
-include("./Params.jl")
+using ..Params
 
 # update interaction matrix according to Eq. 3, then normalise.
 function mutate(eco::Ecosystem, env)::Ecosystem

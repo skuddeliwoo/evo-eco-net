@@ -1,7 +1,7 @@
 module Environment
 
 using ..Types
-include("./Params.jl")
+using ..Params
 
 export changeEnv
 

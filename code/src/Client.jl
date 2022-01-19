@@ -1,10 +1,9 @@
-include("./Params.jl")
+using ..Types
+using ..Params
+import ..Environment
+import ..Mutation
 
-using .Types
-import .Environment
-import .Mutation
-
-include("./init.jl")
+println("starting simulation...")
 
 for episode in 1:nEpisodes
     if (episode % 10 == 0)

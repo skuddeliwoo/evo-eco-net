@@ -2,7 +2,7 @@ module Utility
 
 using LinearAlgebra: I
 using ..Types
-include("./Params.jl")
+using ..Params
 
 function extractFromDump(gen)
     println(size(ecoDump))
