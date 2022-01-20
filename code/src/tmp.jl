@@ -4,8 +4,10 @@ using ..Utility
 using Plots
 using Pkg
 
+# create heatmap shortcut with reversed y-axis for better matrix representation
 heat(m) = heatmap(reverse(m, dims=1), color=:bluesreds)
 
+# create schematic selection pressures of environments on the correlation coefficients
 function combEnv()
     e1 = Environment.env1
     e2 = Environment.env2
@@ -28,17 +30,20 @@ function combEnv()
     return E1, E2
 end
 
-E = .*(combEnv()...)
-
-E = E ./ 4 * 0.2
-E
-min((E .+ 0.075)...)
-
-heat((E .+ 0.075))
-
-src = "/home/andi/dev/evo-eco-net/code/src/"
-
-res = Utility.xtrl(join([src, "run_2022-01-19T18:11:10.702 N 16 epi800 dur 1423928 milliseconds.jld"]))
-res = Utility.xtrl(join([src, "run_2022-01-19T18:11:10.702 N 16 epi800 dur 1423928 milliseconds.jld"]), 1)
-
-Utility.plt(res.B)
+# general tests for the evolved matrix under a dual-alternating environment
+function analyseDualEnvEvolution()
+    E = .*(combEnv()...)
+    
+    E = E ./ 4 * 0.2
+    E
+    min((E .+ 0.075)...)
+    
+    heat((E .+ 0.075))
+    
+    src = "/home/andi/dev/evo-eco-net/code/src/"
+    
+    res = Utility.xtrl(join([src, "run_2022-01-19T18:11:10.702 N 16 epi800 dur 1423928 milliseconds.jld"]))
+    res = Utility.xtrl(join([src, "run_2022-01-19T18:11:10.702 N 16 epi800 dur 1423928 milliseconds.jld"]), 1)
+    
+    Utility.plt(res.B)
+end
