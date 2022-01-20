@@ -5,6 +5,5 @@ include("Params.jl")
 
 include("Environment.jl")
 include("Mutation.jl")
-include("Utility.jl")
 
 include("Client.jl")

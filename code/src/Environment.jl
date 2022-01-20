@@ -3,7 +3,7 @@ module Environment
 using ..Types
 using ..Params
 
-export changeEnv
+export changeEnv, env1, env2
 
 env1 = ones(N) * (k0 - kInc)
 env2 = ones(N) * (k0 - kInc)
@@ -18,7 +18,8 @@ env2 = ones(N) * (k0 - kInc)
 # end
 
 env1[1:Int(N/2) + 1] .= (k0 + kInc)
-env2[Int(N/2) + 1:end] .= (k0 + kInc)
+env2[1:4] .= (k0 + kInc)
+env2[Int(N/2) + 4:end] .= (k0 + kInc)
 
 function changeEnvDual(episode)
     if (episode % 2 == 0)
