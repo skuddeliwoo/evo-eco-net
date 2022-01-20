@@ -14,7 +14,7 @@ for episode in 1:nEpisodes
     end
 
     # init environment
-    env = Environment.changeEnv(episode)
+    env = Environment.changeEnv()
 
     for ecoStep in 1:nEcoSteps
         # apply evolutionary chage & normalise

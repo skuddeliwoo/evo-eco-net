@@ -3,7 +3,7 @@ module Environment
 using ..Types
 using ..Params
 
-export changeEnv, env1, env2
+export changeEnv
 
 # Environment: either depressed elevated carrying capacities
 env1 = ones(N) * (k0 - kInc)
@@ -54,7 +54,7 @@ end
 
 # change environment in either dual or modular fashion:
 
-changeEnv = changeEnvDual
-# changeEnv = changeEnvModular
+# changeEnv = changeEnvDual
+changeEnv = changeEnvModular
 
 end  # module Environment

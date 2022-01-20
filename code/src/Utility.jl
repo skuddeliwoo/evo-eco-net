@@ -24,7 +24,7 @@ function xtr(dump, gen)
     x = copy(dump[gen][1])
     b = copy(dump[gen][2])
 
-    return Res(x, b, Environment.changeEnv(gen))
+    return Res(x, b, Environment.changeEnv())
 end
 
 function xtrl(filename, relIndex=0)
@@ -35,7 +35,7 @@ end
 
 function plt(corrcoeff)
     B = copy(corrcoeff)
-    B[I(N)] .= ω
+    B[I(size(B)[1])] .= ω
     # heatmap(B, color=:bluesreds)
     heatmap(reverse(B, dims=1), color=:bluesreds)
 end

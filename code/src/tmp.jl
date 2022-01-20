@@ -2,7 +2,6 @@ include("Utility.jl")
 
 using ..Utility
 using Plots
-using Pkg
 
 # create heatmap shortcut with reversed y-axis for better matrix representation
 heat(m) = heatmap(reverse(m, dims=1), color=:bluesreds)
@@ -47,3 +46,11 @@ function analyseDualEnvEvolution()
     
     Utility.plt(res.B)
 end
+
+src = "/home/andi/dev/evo-eco-net/code/src/"
+
+res = Utility.xtrl(join([src, "run_2022-01-20T16:19:43.129 N 12 epi400 dur 94868 milliseconds.jld"]))
+
+res.B
+
+Utility.plt(res.B)
