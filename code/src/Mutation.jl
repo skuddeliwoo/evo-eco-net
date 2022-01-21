@@ -31,6 +31,7 @@ function normalise(M)
         ssq = sum((M2 - M)^2)
 
         if (isnan(ssq))
+            println("fn normalise: sum of squared diff is NaN")
             return ErrorException("fn normalise: sum of squared diff is NaN")
         end
 

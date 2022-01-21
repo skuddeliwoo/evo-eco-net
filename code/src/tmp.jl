@@ -49,7 +49,7 @@ end
 
 src = "/home/andi/dev/evo-eco-net/code/src/"
 
-res = Utility.xtrl(join([src, "run_2022-01-20T16:19:43.129 N 12 epi400 dur 94868 milliseconds.jld"]))
+res = Utility.xtrl(join([src, "run_2022-01-20T16:31:40.766 N 16 epi800 dur 1078647 milliseconds.jld"]))
 
 res.B
 
