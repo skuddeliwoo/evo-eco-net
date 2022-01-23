@@ -1,6 +1,7 @@
 module Mutation
 
 using LinearAlgebra: I
+using JLD: save
 using ..Types
 using ..Params
 
@@ -28,11 +29,17 @@ function normalise(M)
         row_norm(M2)
         col_norm(M2)
 
-        ssq = sum((M2 - M)^2)
+        sq = (M2 - M)^2
+        ssq = sum(sq)
 
         if (isnan(ssq))
-            println("fn normalise: sum of squared diff is NaN")
-            return ErrorException("fn normalise: sum of squared diff is NaN")
+            println("fn normalise: sum of squared diff is NaN:")
+            println(M)
+            println(M2)
+
+            save("run crash N$N epi$nEpisodes crash.jld", "dump", ecoDump)
+
+            throw(ErrorException("fn normalise: sum of squared diff is NaN"))
         end
 
         if (ssq < 1e-5)
