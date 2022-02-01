@@ -1,2 +1,4 @@
 run*.jld
 *.log
+code/src/logs/*
+

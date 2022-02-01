@@ -2,6 +2,7 @@ include("Utility.jl")
 
 using ..Utility
 using Plots
+using JLD: load
 
 # create heatmap shortcut with reversed y-axis for better matrix representation
 heat(m) = heatmap(reverse(m, dims=1), color=:bluesreds)
@@ -49,8 +50,10 @@ end
 
 src = "/home/andi/dev/evo-eco-net/code/src/"
 
-res = Utility.xtrl(join([src, "run_2022-01-20T16:31:40.766 N 16 epi800 dur 1078647 milliseconds.jld"]))
+d = load(join([src, "runcrashN12epi50000crash.jld"]))["dump"]
 
-res.B
+last = d[:, end]
+
+last
 
 Utility.plt(res.B)
