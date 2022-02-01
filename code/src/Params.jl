@@ -15,7 +15,7 @@ g = 0.01 # constant of proportionality in selection-limited evolution # lit: 0.0
 μ = 1e-5 # beneficial mutation rate # lit: 10^-5
 ω = -0.2 # initial interaction strength
 
-nEpisodes = 50000 # lit: 800
+nEpisodes = 5000 # lit: 800
 nEcoSteps = 3000 # lit: 5000
 
 # interaction coeffs are init to -0.2; and -1 for diagonal (self interactions)
