@@ -3,7 +3,7 @@ module Environment
 using ..Types
 using ..Params
 
-export changeEnv
+export changeEnv, calcFitness
 
 # Environment: either depressed elevated carrying capacities
 env1 = ones(N) * (k0 - kInc)
@@ -56,5 +56,24 @@ end
 
 # changeEnv = changeEnvDual
 changeEnv = changeEnvModular
+
+function calcBenefit(env, x, Ω)
+    xdot = m * (x ./ env) .* (env + Ω * x)
+
+    return xdot
+end
+
+# returns a vector of costs of all species
+function calcCost(Ω)
+    return (sum(Ω, dims=2) .- (ω * (N-1) + 1)) / (N * N) # / (N * N)... nescessary?
+end
+
+function calcFitness(env, x, Ω, λ=0.1)
+    b = calcBenefit(env, x, Ω)
+    c = calcCost(Ω)
+    f = b - λ * c
+
+    return f
+end
 
 end  # module Environment

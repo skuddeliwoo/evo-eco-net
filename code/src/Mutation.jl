@@ -6,19 +6,15 @@ using ..Types
 using ..Params
 
 # update interaction matrix according to Eq. 3, then normalise.
-function mutate(eco::Ecosystem, env)::Ecosystem
+function mutate(eco::Ecosystem, env)::TInteraction
     # (Eq. 3)
     V = ((m ./ env) * g * μ .* eco.x) * eco.x'
 
     # diagonal elements should not be updated
     V[I(N)] .= 0.0
 
-    # update interaction matrix, but keep diagonal elements
-    M = eco.Ω + V
-
-    # normalise Ω
-    eco.Ω = copy(normalise(M))
-    return eco
+    # update interaction matrix
+    return eco.Ω + V
 end
 
 # apply row- and col_normalisation until squared difference of matrix converges

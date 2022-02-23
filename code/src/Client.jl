@@ -16,9 +16,24 @@ for episode in 1:nEpisodes
     # init environment
     env = Environment.changeEnv()
 
+    # calc fitness -> old fitness
+    fitness = Environment.calcFitness(env, eco.x, eco.Ω)
+
     for ecoStep in 1:nEcoSteps
         # apply evolutionary chage & normalise
-        Mutation.mutate(eco, env)
+        mutantΩ = Mutation.mutate(eco, env)
+
+        # calc mutant fitness
+        fitnessMutant = Environment.calcFitness(env, eco.x, mutantΩ)
+
+        ### Compare fitness and accept mutations
+        indexedFitter = fitnessMutant .> fitness
+
+        fitness[indexedFitter] = fitnessMutant[indexedFitter]
+
+        indexedFitter = repeat(indexedFitter, outer=[1,N])
+
+        eco.Ω[indexedFitter] = mutantΩ[indexedFitter]
 
         # let ecosystem play out
         # L-V model
