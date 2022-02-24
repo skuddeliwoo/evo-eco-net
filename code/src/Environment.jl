@@ -6,8 +6,8 @@ using ..Params
 export changeEnv, calcFitness
 
 # Environment: either depressed elevated carrying capacities
-env1 = ones(N) * (k0 - kInc)
-env2 = ones(N) * (k0 - kInc)
+# env1 = ones(N) * (k0 - kInc)
+# env2 = ones(N) * (k0 - kInc)
 
 # dual env: alternate between two fix envs
 # randomly init envs 1 & 2
@@ -22,9 +22,9 @@ env2 = ones(N) * (k0 - kInc)
 # end
 
 # (if not random): consistently init envs 1 & 2
-env1[1:Int(N/2) + 1] .= (k0 + kInc)
-env2[1:4] .= (k0 + kInc)
-env2[Int(N/2) + 4:end] .= (k0 + kInc)
+# env1[1:Int(N/2) + 1] .= (k0 + kInc)
+# env2[1:4] .= (k0 + kInc)
+# env2[Int(N/2) + 4:end] .= (k0 + kInc)
 
 # alternate each episode
 function changeEnvDual(episode)
