@@ -43,7 +43,7 @@ for episode in 1:nEpisodes
 
     end
     if (episode % 200 == 0 || episode==1 || episode==nEpisodes)
-        push!(ecoDump, [copy(eco.x), copy(eco.Ω)])
+        push!(ecoDump, [copy(eco.x), copy(eco.Ω), copy(env)])
     end
 
 end
@@ -52,4 +52,4 @@ using JLD: save
 
 runTime = now() - startTime
 
-save("run_$startTime N $N epi$nEpisodes dur $runTime.jld", "dump", ecoDump)
+save("run_$startTime lmb$λ N $N epi$nEpisodes.jld", "dump", ecoDump, "duration", runTime)

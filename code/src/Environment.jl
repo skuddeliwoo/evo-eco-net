@@ -69,7 +69,7 @@ function calcCost(Ω)
     # costs are way too low....
 end
 
-function calcFitness(env, x, Ω, λ=0.1)
+function calcFitness(env, x, Ω)
     return calcBenefit(env, x, Ω) - λ * calcCost(Ω)
 end
 
