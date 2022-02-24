@@ -5,7 +5,7 @@ include("Environment.jl")
 
 module Utility
 
-export xtr, xtrl, plt, lv
+export xtr, xtrl, plt, plt2, lv, xtrb, getDump
 
 using LinearAlgebra: I
 using Plots: heatmap
@@ -27,10 +27,39 @@ function xtr(dump, gen)
     return Res(x, b, Environment.changeEnv())
 end
 
+function getDump(file)
+    jld = load(file)
+    return jld["dump"]
+end
+
+function xtrb(file::String, gen)
+    res = xtr(getDump(file), gen)
+    return res.B
+end 
+
+function xtrb(dmp::Array, gen)
+    res = xtr(dmp, gen)
+    return res.B
+end 
+
 function xtrl(filename, relIndex=0)
-    jld = load(filename)
-    gen = size(jld["dump"])[1]
-    return xtr(jld["dump"], gen - relIndex)
+    dump = getDump(filename)
+    gen = size(dump)[1]
+    return xtr(dump, gen - relIndex)
+end
+
+function plt2(corrcoeff)
+    B = copy(corrcoeff)
+    B[I(size(B)[1])] .= ω
+    avg = sum(B) / *(size(B)...)
+    B[I(size(B)[1])] .= avg
+    avg = sum(B) / *(size(B)...)
+    B[I(size(B)[1])] .= avg
+    avg = sum(B) / *(size(B)...)
+    B[I(size(B)[1])] .= avg
+    avg = sum(B) / *(size(B)...)
+
+    heatmap(reverse(B, dims=1), color=:bluesreds)
 end
 
 function plt(corrcoeff)

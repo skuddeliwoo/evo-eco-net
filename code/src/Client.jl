@@ -42,7 +42,9 @@ for episode in 1:nEpisodes
         eco.x = eco.x + xdot
 
     end
-    push!(ecoDump, [copy(eco.x), copy(eco.Ω)])
+    if (episode % 200 == 0 || episode==1 || episode==nEpisodes)
+        push!(ecoDump, [copy(eco.x), copy(eco.Ω)])
+    end
 
 end
 

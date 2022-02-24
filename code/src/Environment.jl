@@ -65,15 +65,12 @@ end
 
 # returns a vector of costs of all species
 function calcCost(Ω)
-    return (sum(Ω, dims=2) .- (ω * (N-1) + 1)) / (N * N) # / (N * N)... nescessary?
+    return ((sum(Ω, dims=2) .+ 1) .- (ω * (N-1))) / N
+    # costs are way too low....
 end
 
 function calcFitness(env, x, Ω, λ=0.1)
-    b = calcBenefit(env, x, Ω)
-    c = calcCost(Ω)
-    f = b - λ * c
-
-    return f
+    return calcBenefit(env, x, Ω) - λ * calcCost(Ω)
 end
 
 end  # module Environment

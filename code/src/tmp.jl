@@ -48,12 +48,24 @@ function analyseDualEnvEvolution()
     Utility.plt(res.B)
 end
 
-src = "/home/andi/dev/evo-eco-net/code/src/"
+src = "/home/andi/dev/evo-eco-net/code/src/logs/"
+file = join([src, "run_2022-02-23T10:00:58.985 N 12 epi100000 dur 11176053 milliseconds.jld"])
 
-d = load(join([src, "runcrashN12epi50000crash.jld"]))["dump"]
+# last = Utility.xtrl(file)
 
-last = d[:, end]
+dmp = Utility.getDump(file)
 
-last
+k10 = Utility.xtrb(dmp, Int(1e4))
+k20 = Utility.xtrb(dmp, Int(2e4))
+k30 = Utility.xtrb(dmp, Int(3e4))
+k40 = Utility.xtrb(dmp, Int(4e4))
+k50 = Utility.xtrb(dmp, Int(5e4))
+k60 = Utility.xtrb(dmp, Int(6e4))
+k70 = Utility.xtrb(dmp, Int(7e4))
+k75 = Utility.xtrb(dmp, Int(7.5e4))
+k80 = Utility.xtrb(dmp, Int(8e4))
+k90 = Utility.xtrb(dmp, Int(9e4))
 
-Utility.plt(res.B)
+Utility.plt2(k75)
+
+last.B
