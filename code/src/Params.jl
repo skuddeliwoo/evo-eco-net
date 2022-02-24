@@ -2,7 +2,7 @@ module Params
 
 using ..Types
 
-export nModules, nModuleSize, N, k0, kInc, m, g, μ, ω, nEpisodes, nEcoSteps, eco, ecoDump
+export nModules, nModuleSize, N, k0, kInc, m, g, μ, ω, λ, nEpisodes, nEcoSteps, eco, ecoDump
 
 nModules = 3
 nModuleSize = 3
