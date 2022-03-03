@@ -21,7 +21,7 @@ for episode in 1:nEpisodes
 
     for ecoStep in 1:nEcoSteps
         # apply evolutionary chage & normalise
-        mutantΩ = Mutation.mutate(eco, env)
+        mutantΩ = Mutation.mutate(eco)
 
         # calc mutant fitness
         fitnessMutant = Environment.calcFitness(env, eco.x, mutantΩ)

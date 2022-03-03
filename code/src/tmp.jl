@@ -49,23 +49,39 @@ function analyseDualEnvEvolution()
 end
 
 src = "/home/andi/dev/evo-eco-net/code/src/logs/"
-file = join([src, "run_2022-02-23T10:00:58.985 N 12 epi100000 dur 11176053 milliseconds.jld"])
+file01 = join([src, "run_2022-02-24T01:08:06.422 lmb01 N 9 epi80000 dur 13696781 milliseconds.jld"])
+file03 = join([src, "run_2022-02-24T01:08:55.346 lmb03 N 9 epi80000 dur 13650117 milliseconds.jld"])
+file05 = join([src, "run_2022-02-24T01:09:21.274 lmb05 N 9 epi80000 dur 13658364 milliseconds.jld"])
+file07 = join([src, "run_2022-02-24T01:09:58.903 lmb07 N 9 epi80000 dur 13578731 milliseconds.jld"])
+file10 = join([src, "run_2022-02-24T10:44:40.207 lmb1 N 9 epi80000.jld"])
+file15 = join([src, "run_2022-02-24T10:45:29.356 lmb1.5 N 9 epi80000.jld"])
+file20 = join([src, "run_2022-02-24T10:45:43.765 lmb2 N 9 epi80000.jld"])
+file30 = join([src, "run_2022-02-24T10:45:59.679 lmb3 N 9 epi80000.jld"])
+file50 = join([src, "run_2022-02-24T10:45:59.679 lmb3 N 9 epi80000.jld"])
+file70 = join([src, "run_2022-02-24T10:45:59.679 lmb3 N 9 epi80000.jld"])
+file100 = join([src, "run_2022-02-24T12:48:51.451 lmb10 N 9 epi80000.jld"])
+file150 = join([src, "run_2022-02-24T12:49:14.771 lmb15 N 9 epi80000.jld"])
 
 # last = Utility.xtrl(file)
 
-dmp = Utility.getDump(file)
+# dmp = Utility.getDump(file)
 
-k10 = Utility.xtrb(dmp, Int(1e4))
-k20 = Utility.xtrb(dmp, Int(2e4))
-k30 = Utility.xtrb(dmp, Int(3e4))
-k40 = Utility.xtrb(dmp, Int(4e4))
-k50 = Utility.xtrb(dmp, Int(5e4))
-k60 = Utility.xtrb(dmp, Int(6e4))
-k70 = Utility.xtrb(dmp, Int(7e4))
-k75 = Utility.xtrb(dmp, Int(7.5e4))
-k80 = Utility.xtrb(dmp, Int(8e4))
-k90 = Utility.xtrb(dmp, Int(9e4))
+b01 = Utility.xtrl(file01).B
+b03 = Utility.xtrl(file03).B
+b05 = Utility.xtrl(file05).B
+b07 = Utility.xtrl(file07).B
+b10 = Utility.xtrl(file10).B
+b15 = Utility.xtrl(file15).B
+b20 = Utility.xtrl(file20).B
+b30 = Utility.xtrl(file30).B
 
-Utility.plt2(k75)
+Utility.plt2(b1)
+Utility.plt2(b3)
+Utility.plt2(b5)
+Utility.plt2(b7)
+Utility.plt2(b10)
+Utility.plt2(b15)
+Utility.plt2(b20)
+Utility.plt2(b30)
 
 last.B

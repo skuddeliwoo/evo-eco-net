@@ -6,15 +6,18 @@ using ..Types
 using ..Params
 
 # update interaction matrix according to Eq. 3, then normalise.
-function mutate(eco::Ecosystem, env)::TInteraction
-    # (Eq. 3)
-    V = ((m ./ env) * g * μ .* eco.x) * eco.x'
+function mutate(eco::Ecosystem)::TInteraction
+    # copy interaction matrix
+    mutant::TInteraction = copy(eco.Ω)
 
-    # diagonal elements should not be updated
-    V[I(N)] .= 0.0
+    # mutate one entry per species; choose which ones
+    mutIndex = rand((1:N), N)
+    mutIndex = collect(0:N-1) .* N + mutIndex
 
-    # update interaction matrix
-    return eco.Ω + V
+    # add mutational increment ϵ [-μ, +μ]
+    mutant[mutIndex] += rand(N) * (μ * 2) .- μ
+
+    return mutant
 end
 
 # apply row- and col_normalisation until squared difference of matrix converges
