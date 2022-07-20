@@ -14,7 +14,8 @@ function mutate(eco::Ecosystem)::TInteraction
     mutIndex = rand((1:N), N)
     mutIndex = collect(0:N-1) .* N + mutIndex
 
-    # add mutational increment ϵ [-μ, +μ]
+    # add mutational increments ϵ [-μ, +μ]
+    # μ should be dependent on species density TODO
     mutant[mutIndex] += rand(N) * (μ * 2) .- μ
 
     return mutant

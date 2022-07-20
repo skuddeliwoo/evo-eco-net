@@ -37,7 +37,8 @@ for episode in 1:nEpisodes
 
         # let ecosystem play out
         # L-V model
-        xdot = m * (eco.x ./ env) .* (env + eco.Ω * eco.x)
+        # needs self-limiting term, since self interactions may not be -1
+        xdot = m * (eco.x ./ env) .* (env + (eco.Ω * eco.x) - eco.x)
 
         eco.x = eco.x + xdot
 
